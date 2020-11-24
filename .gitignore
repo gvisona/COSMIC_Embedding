@@ -4,3 +4,4 @@ tmp_data/
 logs/
 CosmicGenomeScreensMutantExport.tsv
 embeddings/plots/
+models/
