@@ -27,12 +27,11 @@ def gaussian_reparameterization(mu, logvar):
 
 
 class CancerSamplesDataset(Dataset):
-    def __init__(self, sample_ids_fname, encodings_fname, sorted_mutations_fname, mutations_mapping_fname, train=True, val_split=0.1):
+    def __init__(self, sample_encodings_fname, sorted_mutations_fname, mutations_mapping_fname, train=True, val_split=0.1):
         super().__init__()
-        with open(sample_ids_fname, "r") as f:
-            self.sample_ids = json.load(f)
-            self.sample_ids = [str(s) for s in self.sample_ids]
-        self.encodings = np.load(encodings_fname)
+        sample_encodings = pd.read_csv(sample_encodings_fname)
+        self.sample_ids = sample_encodings["ID_sample"].astype(str).values
+        self.encodings = sample_encodings.values[:,1:]
         with open(sorted_mutations_fname, "r") as f:
             self.mutations = json.load(f)
             self.mutations = {m: i for i, m in enumerate(self.mutations)}

@@ -1,2 +1,6 @@
 __pycache__/
 .ipynb_checkpoints/
+tmp_data/
+logs/
+CosmicGenomeScreensMutantExport.tsv
+embeddings/plots/
