@@ -1,5 +1,7 @@
 import os
+from os.path import join
 import numpy as np
+import pandas as pd
 import torch
 from tqdm import tqdm
 from vae_model import BimodalVAE, CancerSamplesDataset
@@ -13,19 +15,18 @@ if __name__ == "__main__":
                                    join("data", "sorted_mutations.json"),
                                    join("data", "mutations_mapping_split.json"),
                                    train=None)
-    checkpoint = torch.load(join("models", "vae.ckpt"))["state_dict"]
-    model = BimodalVAE()
-    model.load_state_dict(checkpoint)
-    subtype_encodings = []
-    embeddings = []
-    with torch.no_grad():
-        model.eval()
-        for X_del, X_nd, subtypes in tqdm(full_ds):
-            mu, logvar = model.encode(X_del, X_nd)
-            subtype_encodings.append(subtypes)
-            embeddings.append(mu)
-    embeddings = torch.stack(embeddings).detach().numpy()
-    subtype_encodings = torch.stack(
-        subtype_encodings).detach().numpy().astype(int)
-    np.save(join("embeddings", "subtype_encodings.npy"), subtype_encodings)
-    np.save(join("embeddings", "vae_embeddings.npy"), embeddings)
+    print(len(full_ds))
+    print(len(full_ds.sample_ids))
+    # checkpoint = torch.load(join("models", "vae.ckpt"))["state_dict"]
+    # model = BimodalVAE()
+    # model.load_state_dict(checkpoint)
+    # embeddings = []
+    # with torch.no_grad():
+    #     model.eval()
+    #     for X_del, X_nd, subtypes in tqdm(full_ds):
+    #         mu, logvar = model.encode(X_del, X_nd)
+    #         embeddings.append(mu)
+    # embeddings = torch.stack(embeddings).detach().numpy()
+    # embeddings_df = pd.DataFrame(embeddings, columns=["x{}".format(i) for i in range(embeddings.shape[-1])])
+    # embeddings_df.insert(0, "ID_sample", full_ds.sample_ids)
+    # embeddings_df.to_csv(join("embeddings", "vae_embeddings.csv"), index=False)

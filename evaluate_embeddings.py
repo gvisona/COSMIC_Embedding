@@ -19,7 +19,8 @@ if __name__=="__main__":
         sorted_mutations = json.load(f)
 
     print("Calculating UMAP projection...")
-    embeddings = np.load(join("embeddings", "vae_embeddings.npy"))
+    embeddings_data = pd.read_csv(join("embeddings", "vae_embeddings.csv"))
+    embeddings = embeddings_data.values[:,1:] # np.load(join("embeddings", "vae_embeddings.npy"))
     reducer = umap.UMAP(n_components=2, n_neighbors=3, min_dist=0.5, random_state=42)
     umap_embeddings = reducer.fit_transform(embeddings)
 
