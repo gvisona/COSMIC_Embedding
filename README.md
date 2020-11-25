@@ -39,7 +39,7 @@ Using information from [Disease Ontology](https://disease-ontology.org/), we con
 
 <img src="readme_images/subtype_hierarchy.png"
      alt="Hierarchy of cancer subtypes"
-     height=600 width=1200 />
+     height=500 width=1200 />
 
 Each cancer sample is assigned a positivae (1) or negative (0) class for each category, while respecting the hierarchical structure. Some of the categories considered (e.g. adenocarcinoma) consist of purely histological subtypes, while most other categories are related to the primary site of origin of the cancer sample. Of the 26.355 samples, 25.645 were assigned at least one category, while the remaining samples were excluded from this analysis. 
 
@@ -47,7 +47,7 @@ We first used a UMAP projection to visualize and observe the patterns shown by t
 
 <img src="readme_images/embeddings_visualization.png"
      alt="UMAP embeddings"
-     height=500 width=1000 />
+     height=400 width=800 />
 
 To evaluate how well the embeddings capture the phenotypic information of the samples, we trained a Support Vector Machine (SVM) classified for each of the 56 categories to evaluate the prediction accuracy on a validation set. Given the imbalance of categories when using the full dataset, for each cancer subtype, where possible, a set of negative samples equal in size to the positive samples was randomly selected. This smaller subtype-specific dataset was split into training and test sets, and used for the classifier evaluations, by applying a 5-fold cross-validation scheme. The results reported in the following table represent the median value of the metrics across folds. As evidenced by the results, most cancer subtypes achieve a good accuracy score, while other subtypes (such as lung adenocarcinoma) display poor performance. This fact might be indicative that dor some forms of cancer, their mutational profile is strongly related to the primary site of carcinogenesis, therefor the profile itself is a strong predictor of the phenotype, while for other forms of cancer this link is weaker.
 
