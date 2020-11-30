@@ -141,7 +141,7 @@ The files require a python 3 setup with the packages listed in _requirements.txt
 
 ## Embeddings Availability
 
-Precomputed embeddings are available in the _embeddings/mmd_vae_embeddings.csv_ and _embeddings/vae_embeddings.csv_ files for the InfoVAE and BetaVAE respectively, which contain the 50-dimensional representations for the 25.645 samples for which a cancer subtype was assigned.
+Pre-computed embeddings are available in the _embeddings/mmd_vae_embeddings.csv_ and _embeddings/vae_embeddings.csv_ files for the InfoVAE and BetaVAE respectively, which contain the 50-dimensional representations for the 25.645 samples for which a cancer subtype was assigned.
 
 ## Files Description
 - _COSMIC Data Processing.ipynb_: this jupyter  notebook contains all the proedures to process the raw Mutation Data dataset into the formats required by the VAE model
