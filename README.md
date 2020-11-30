@@ -126,7 +126,7 @@ These results show that the learned embedding improves classification performanc
 | cancer | 25233 | <b>0.56</b> | 0.54 | 0.54 |
 | benign_neoplasm | 416 | 0.55 | 0.63 | <b>0.64</b> |
 
-Overall, the performance shown, the almost 500-fold compression of the data, suggest that the use of deep representations of somatic mutation profiles is beneficial for downstream analyses.
+Overall, the performance shown and the almost 500-fold compression of the data suggest that the use of deep representations of somatic mutation profiles is beneficial for downstream analyses.
 
 
 ## Reproducing the Results
