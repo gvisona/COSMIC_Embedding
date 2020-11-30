@@ -133,7 +133,7 @@ Overall, the performance shown and the almost 500-fold compression of the data s
 
 To reproduce the results of this project, download and extract the "COSMIC Mutation Data (Genome Screens)" dataset (version v92) in the root folder of the project, and then execute the following files in order:
 1. _COSMIC Data Processing.ipynb_ notebook
-2. _train_model.py_
+2. _mmd_train_model.py_
 3. _embed_cancer_samples.py_
 4. _plot_embeddings.py_
 
