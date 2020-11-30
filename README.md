@@ -145,6 +145,11 @@ Precomputed embeddings are available in the _embeddings/mmd_vae_embeddings.csv_ 
 
 ## Files Description
 - _COSMIC Data Processing.ipynb_: this jupyter  notebook contains all the proedures to process the raw Mutation Data dataset into the formats required by the VAE model
+- _mmd_train_model.py_ and _train_model.py_: training scripts for the BetaVAE and InfoVAE models respectively
+- _mmd_vae_model.py_ and _vae_model.py_: pytorch implementations of the Dataset and Modules for the BetaVAE and InfoVAE.
+- _embed_cancer_samples.py_: script to embed the full dataset using a pre-trained model (resulting from _mmd_train_model.py_ or _train_model.py_)
+- _plot_embeddings.py_: script to project the embeddings using UMAP and visualize the cancer subtypes on the manifold
+- _embeddings/mmd_vae_embeddings.csv_ and _embeddings/vae_embeddings.csv_: 50-dimensional embeddings resulting from the analysis, indexed by the COSMIC Sample ID, and made directly available
 
 ## References
 - Amar, D., Izraeli, S., & Shamir, R. (2017). _Utilizing somatic mutation data from numerous studies for cancer research: proof of concept and applications._ Oncogene, 36(24), 3375-3383
