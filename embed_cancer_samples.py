@@ -5,6 +5,7 @@ import pandas as pd
 import torch
 from tqdm import tqdm
 from vae_model import BimodalVAE, CancerSamplesDataset
+from mmd_vae_model import Bimodal_MMD_VAE
 
 if __name__ == "__main__":
     if not os.path.exists("embeddings"):
@@ -16,16 +17,18 @@ if __name__ == "__main__":
                                    join("data", "mutations_mapping_split.json"),
                                    train=None)
 
-    checkpoint = torch.load(join("models", "vae.ckpt"))["state_dict"]
-    model = BimodalVAE()
+    checkpoint = torch.load(join("models", "mmd_vae.ckpt"))["state_dict"]
+    model = Bimodal_MMD_VAE() # BimodalVAE()
     model.load_state_dict(checkpoint)
     embeddings = []
     with torch.no_grad():
         model.eval()
         for X_del, X_nd, subtypes in tqdm(full_ds):
-            mu, logvar = model.encode(X_del, X_nd)
-            embeddings.append(mu)
+            z = model.encode(X_del, X_nd)
+            # mu, logvar = model.encode(X_del, X_nd)
+            embeddings.append(z)
+            # embeddings.append(mu)
     embeddings = torch.stack(embeddings).detach().numpy()
     embeddings_df = pd.DataFrame(embeddings, columns=["x{}".format(i) for i in range(embeddings.shape[-1])])
     embeddings_df.insert(0, "ID_sample", full_ds.sample_ids)
-    embeddings_df.to_csv(join("embeddings", "vae_embeddings.csv"), index=False)
+    embeddings_df.to_csv(join("embeddings", "mmd_vae_embeddings.csv"), index=False)
